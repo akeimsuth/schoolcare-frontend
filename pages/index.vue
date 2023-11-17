@@ -31,20 +31,12 @@
                 />
               </div>
               <div class="mt-5">
-                <VBtn type="submit" block min-height="44" class="gradient primary">Sign In</VBtn>
+                <VBtn :loading="validating" type="submit" block min-height="44" class="gradient primary">Sign In</VBtn>
               </div>
             </VForm>
             <p class="text-body-2 mt-10">
               <NuxtLink to="/reset-password" class="font-weight-bold text-primary"
                 >Forgot password?</NuxtLink
-              >
-            </p>
-            <p class="text-body-2 mt-4">
-              <span
-                >Don't have an account?
-                <NuxtLink to="/signup" class="font-weight-bold text-primary"
-                  >Sign Up</NuxtLink
-                ></span
               >
             </p>
           </VCol>
@@ -57,12 +49,7 @@
           class="h-100 rounded-xl d-flex align-center justify-center"
         >
           <div class="text-center w-50 text-white mx-auto">
-            <h2 class="mb-4">Start your journey today</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores, inventore quia.
-              Dolorum dolores ad ipsum voluptatum rem, hic placeat, odio, odit numquam quod
-              veritatis accusantium assumenda! Sequi, provident in! Iure!
-            </p>
+            <h2 class="mb-4">Welcome Back!</h2>
           </div>
         </VImg>
       </VCol>
@@ -71,10 +58,28 @@
 </template>
 
 <script setup>
+const { login } = useStrapiAuth();
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 const email = ref("");
 const password = ref("");
-
+const validating = ref(false);
 const { ruleEmail, rulePassLen, ruleRequired } = useFormRules();
 
-const submit = async () => {};
+const submit = async () => {
+  try {
+    validating.value = true;
+    await login({ identifier: email.value, password: password.value })
+    await navigateTo('/admin');
+  } catch (e) {
+    validating.value = false;
+    toast("User Not Found!", {
+        autoClose: 2000,
+        type: toast.TYPE.ERROR,
+        position: toast.POSITION.TOP_LEFT
+      });
+    console.log('User not Found!');
+  }
+
+};
 </script>

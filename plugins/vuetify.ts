@@ -1,8 +1,13 @@
 import { createVuetify } from "vuetify";
-
+import { VOtpInput } from 'vuetify/labs/VOtpInput'
+import { VDataTableServer } from 'vuetify/labs/VDataTable'
 export default defineNuxtPlugin((app) => {
   const vuetify = createVuetify({
-    ssr: true,
+    components: {
+      VOtpInput,
+      VDataTableServer,
+    },
+    ssr: false,
     defaults,
     // add theme
     theme: {

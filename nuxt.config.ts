@@ -1,9 +1,9 @@
 import vuetify from "vite-plugin-vuetify";
 
 // PWA Config
-const title = "Vuetify 3 + Nuxt 3 Starter";
-const shortTitle = "Vuetify 3 + Nuxt 3 Starter";
-const description = "Template to get you up and running with Nuxt 3 & Vuetify 3";
+const title = "Schoolcare";
+const shortTitle = "Schoolcare";
+const description = "School app";
 const image = "https://vuetify3nuxt3starter.behonbaker.com/starter.png";
 const url = "https://vuetify3nuxt3starter.behonbaker.com/";
 
@@ -17,6 +17,7 @@ export default defineNuxtConfig({
   build: { transpile: ["vuetify"] },
   modules: [
     "@kevinmarrec/nuxt-pwa",
+    '@nuxtjs/strapi',
     async (options, nuxt) => {
       nuxt.hooks.hook("vite:extendConfig", (config) => {
         config.plugins ||= [];
@@ -24,11 +25,10 @@ export default defineNuxtConfig({
       });
     },
   ],
-
   app: {
     head: {
-      title: "Vuetify 3 + Nuxt 3 Starter",
-      titleTemplate: "%s | Vuetify 3 + Nuxt 3 Starter",
+      title: "Schoolcare",
+      titleTemplate: "%s | Schoolcare",
       link: [
         { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
         { rel: "preconnect", href: "https://rsms.me/" },
@@ -97,7 +97,7 @@ export default defineNuxtConfig({
   pwa: {
     meta: {
       name: shortTitle,
-      author: "Behon Baker",
+      author: "Akeim Sutherland",
       theme_color: "#4f46e5",
       description: description,
     },
@@ -108,4 +108,11 @@ export default defineNuxtConfig({
       description: description,
     },
   },
+  strapi: {
+    url: 'http://localhost:1337',
+    prefix: '/api',
+    version: 'v4',
+    cookie: {maxAge: 1000},
+    cookieName: 'strapi_jwt'
+  }
 });

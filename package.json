@@ -13,11 +13,16 @@
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@nuxt/devtools": "^0.8.5",
     "@nuxtjs/google-fonts": "^3.0.2",
+    "@nuxtjs/strapi": "^1.9.3",
     "nuxt": "3.7.4",
     "sass": "^1.68.0",
     "vuetify": "^3.3.19"
   },
   "dependencies": {
-    "vite-plugin-vuetify": "^1.0.2"
+    "mitt": "^3.0.1",
+    "simple-vue-camera": "^1.1.3",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vue3-toastify": "^0.1.13",
+    "vuex": "^4.0.2"
   }
 }

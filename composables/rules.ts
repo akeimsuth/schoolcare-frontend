@@ -9,3 +9,5 @@ export const useFormRules = () => {
 		rulePassLen: (v: string) => (!!v && v.length >= 6) || "Password must be 6 chars or more",
 	};
 };
+
+  
